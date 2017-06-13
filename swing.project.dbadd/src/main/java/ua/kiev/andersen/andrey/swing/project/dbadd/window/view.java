@@ -25,16 +25,24 @@ import javax.swing.JScrollBar;
 
 public class view extends JFrame{
 	
-	JPanel panel = new JPanel();
+	private JPanel jPanel = new JPanel();
 	private JTextField txtPort;
 	private JTextField txtDB;
 	private JTextField txtLogin;
-	JButton eer;
-	JComboBox comboBox;
+	private JButton eer;
+	private JComboBox comboBox;
 	private JTextField txtPass;
-	String b;
-	final ArrayList<JComboBox> jb = new ArrayList<JComboBox>();
+	private String forFormDBConnection;
+	private final ArrayList<JComboBox> jb = new ArrayList<JComboBox>();
 	private JTextField textField;
+	private final String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
+	private String[] dbString = {"2","3","4","5"};
+	private final String[] countObject = {"10","25","50","100","250"};
+	private JComboBox countColum;
+	private JLabel lblColumget;
+	private JMenuBar jMenuBar;
+	private JMenu jMenu;
+	private JMenuItem jMenuItem;
 	
 	public view() {	
 		
@@ -45,82 +53,81 @@ public class view extends JFrame{
 		
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		
-		
-		
+			
 		menuWork();
-		/*panelAdd();
-		panelMenu();*/
 		panelConfig();
 		
 		
-		panel.repaint(); 
+		jPanel.repaint(); 
 		setVisible(true);		
 	}
 	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	
 	void panelMenu(){
-		getContentPane().remove(panel);
-		panel = new JPanel();
-		panel.setBounds(0, 0, 194, 271);
-		getContentPane().add(panel);
+		
+		jPanel = new JPanel();
+		jPanel.setBounds(0, 0, 194, 271);
+		getContentPane().add(jPanel);
 		menuWork();
-		panel.repaint(); 
-		setVisible(true);
 		
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	
 	void panelAdd(){
-		getContentPane().remove(panel);
-		panel = new JPanel();
-		panel.setBounds(0, 0, 194, 271);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-		menuWork();
 		
-		JLabel lblColumget = new JLabel("ColumGet");
+		jPanel = new JPanel();
+		jPanel.setBounds(0, 0, 194, 271);
+		getContentPane().add(jPanel);
+		jPanel.setLayout(null);	
+		
+		lblColumget = new JLabel("ColumGet");
 		lblColumget.setBounds(10, 30, 70, 20);
-		panel.add(lblColumget);
-		final String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
-		String[] dbString = {"2","3","4","5"};
-		final String[] countObject = {"10","25","50","100","250"};
+		jPanel.add(lblColumget);
 		
-		final JComboBox countColum = new JComboBox(dbString);
+		countColum = new JComboBox(dbString);
 		countColum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String columAdd = (String)countColum.getSelectedItem();
 				System.out.println(columAdd);
 				
 				int ct = Integer.parseInt(columAdd);
+				getContentPane().remove(jPanel);
 				panelAdd();
+				countColum.setSelectedItem(dbString[ct - 2]);
+				jPanel.repaint(); 
+				setVisible(true);
 				jb.clear();
 				for(int i = 0; i < ct+1; i++){
 					if(i < ct){
 					JLabel lblLogin = new JLabel((i + 1) + " colum");
 					lblLogin.setBounds(10, 61 + (i*30), 50, 14);
-					panel.add(lblLogin);
+					jPanel.add(lblLogin);
 					
 					comboBox = new JComboBox(forColum);
 					comboBox.setBounds(100, 61 + (i*30), 70, 20);
-					panel.add(comboBox);
+					jPanel.add(comboBox);
 					}else{
 						JLabel lblLogin = new JLabel("AddNew");
 						lblLogin.setBounds(10, 61 + (i*30), 50, 14);
-						panel.add(lblLogin);
+						jPanel.add(lblLogin);
 						 
 						comboBox = new JComboBox(countObject);
 						comboBox.setBounds(100, 61 + (i*30), 70, 20);
-						panel.add(comboBox);
+						jPanel.add(comboBox);
 					}
 					jb.add(comboBox);
 				}
 				
-				panel.repaint(); 
+				jPanel.repaint(); 
 				setVisible(true);
 			}
 		});
 		
 		countColum.setBounds(84, 30, 100, 20);
-		panel.add(countColum);
+		jPanel.add(countColum);
 		
 		JButton btnokok = new JButton("Ok");
 		btnokok.addActionListener(new ActionListener() {
@@ -131,7 +138,7 @@ public class view extends JFrame{
 			}
 		});
 		btnokok.setBounds(111, 237, 73, 23);
-		panel.add(btnokok);
+		jPanel.add(btnokok);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -140,21 +147,20 @@ public class view extends JFrame{
 			}
 		});
 		btnClear.setBounds(10, 237, 73, 23);
-		panel.add(btnClear);
+		jPanel.add(btnClear);
 		
-		
-		panel.repaint(); 
-		setVisible(true);
+		menuWork();
 		
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////
+	
 	void panelConfig(){
-		getContentPane().remove(panel);
-		panel = new JPanel();
-		panel.setBounds(0, 0, 194, 271);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-		menuWork();
+		
+		jPanel = new JPanel();
+		jPanel.setBounds(0, 0, 194, 271);
+		getContentPane().add(jPanel);
+		jPanel.setLayout(null);
 		String[] sqlJDBC = {"MySql","PostgreSQL"};
 		final JComboBox SQLSelect = new JComboBox(sqlJDBC);
 		SQLSelect.addActionListener(new ActionListener() {
@@ -164,126 +170,141 @@ public class view extends JFrame{
 			}
 		});
 		
-		
-		
-		
 		SQLSelect.setBounds(66, 30, 100, 20);
-		panel.add(SQLSelect);
+		jPanel.add(SQLSelect);
 		
 		JLabel lblSql = new JLabel("SQL");
 		lblSql.setBounds(20, 30, 50, 20);
-		panel.add(lblSql);
-		
+		jPanel.add(lblSql);
 		
 		txtPort = new JTextField();
 		txtPort.setBounds(80, 60, 86, 20);
-		panel.add(txtPort);
+		jPanel.add(txtPort);
 		txtPort.setColumns(10);
-		
 		
 		txtDB = new JTextField();
 		txtDB.setBounds(80, 91, 86, 20);
-		panel.add(txtDB);
+		jPanel.add(txtDB);
 		txtDB.setColumns(10);
 		
 		txtLogin = new JTextField();
 		txtLogin.setColumns(10);
 		txtLogin.setBounds(80, 153, 86, 20);
-		panel.add(txtLogin);
+		jPanel.add(txtLogin);
 		
 		JLabel lblLogin = new JLabel("PORT");
 		lblLogin.setBounds(20, 63, 46, 14);
-		panel.add(lblLogin);
+		jPanel.add(lblLogin);
 		
 		JLabel lblPasword = new JLabel("DB");
 		lblPasword.setBounds(20, 93, 46, 14);
-		panel.add(lblPasword);
+		jPanel.add(lblPasword);
 		
 		JLabel DBLabel = new JLabel("Login");
 		DBLabel.setBounds(20, 156, 56, 14);
-		panel.add(DBLabel);
+		jPanel.add(DBLabel);
+
+		JLabel lblPort = new JLabel("Pass");
+		lblPort.setBounds(20, 187, 56, 14);
+		jPanel.add(lblPort);
+		
+		txtPass = new JTextField();
+		txtPass.setColumns(10);
+		txtPass.setBounds(80, 184, 86, 20);
+		jPanel.add(txtPass);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(80, 122, 86, 20);
+		jPanel.add(textField);
+		
+		JLabel lblName = new JLabel("Table");
+		lblName.setBounds(20, 125, 56, 14);
+		jPanel.add(lblName);
 		
 		JButton btnOk = new JButton("Ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				b = txtPort.getText();
-				System.out.println(b);
-				b = txtDB.getText();
-				System.out.println(b);
-				b = txtLogin.getText();
-				System.out.println(b);
-				b = txtPass.getText();
-				System.out.println(b);
+				forFormDBConnection = txtPort.getText();
+				System.out.println(forFormDBConnection);
+				forFormDBConnection = txtDB.getText();
+				System.out.println(forFormDBConnection);
+				forFormDBConnection = txtLogin.getText();
+				System.out.println(forFormDBConnection);
+				forFormDBConnection = txtPass.getText();
+				System.out.println(forFormDBConnection);
 			}
 		});
+		
 		btnOk.setBounds(111, 237, 73, 23);
-		panel.add(btnOk);
+		jPanel.add(btnOk);
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelConfig();
-				b = null;
+				forFormDBConnection = null;
 			}
 		});
+		
 		btnClear.setBounds(10, 237, 73, 23);
-		panel.add(btnClear);
-		
-		JLabel lblPort = new JLabel("Pass");
-		lblPort.setBounds(20, 187, 56, 14);
-		panel.add(lblPort);
-		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(80, 184, 86, 20);
-		panel.add(txtPass);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(80, 122, 86, 20);
-		panel.add(textField);
-		
-		JLabel lblName = new JLabel("Table");
-		lblName.setBounds(20, 125, 56, 14);
-		panel.add(lblName);
+		jPanel.add(btnClear);
+		getContentPane().add(jPanel);
 		
 		menuWork();
 		
-		panel.repaint(); 
-		setVisible(true);
 	}
 	
+	////////////////////////////////////////////////////////////////////////////////////////////
+
 	void menuWork(){
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 194, 27);
-		getContentPane().add(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Select Menu");
-		menuBar.add(mnNewMenu);
+		jMenuBar = new JMenuBar();
+		jMenuBar.setBounds(0, 0, 194, 27);
+		getContentPane().add(jMenuBar);
 		
-		JMenuItem mntmMain = new JMenuItem("Main");
-		mntmMain.addActionListener(new ActionListener() {
+		jMenu = new JMenu("Select Menu");
+		jMenuBar.add(jMenu);
+		
+		jMenuItem = new JMenuItem("Main");
+		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(jPanel);
 				panelMenu();
+				jPanel.repaint(); 
+				setVisible(true);
 			}
 		});
-		mnNewMenu.add(mntmMain);
 		
-		JMenuItem mntmAddnewfild = new JMenuItem("AddNewFild");
-		mntmAddnewfild.addActionListener(new ActionListener() {
+		jMenu.add(jMenuItem);
+		
+		jMenuItem = new JMenuItem("AddNewFild");
+		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(jPanel);
 				panelAdd();
+				jPanel.repaint(); 
+				setVisible(true);
 			}
 		});
-		mnNewMenu.add(mntmAddnewfild);
 		
-		JMenuItem mntmConfig = new JMenuItem("Config");
-		mntmConfig.addActionListener(new ActionListener() {
+		jMenu.add(jMenuItem);
+		
+		jMenuItem = new JMenuItem("Config");
+		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				getContentPane().remove(jPanel);
 				panelConfig();
+				jPanel.repaint();
+				setVisible(true);
 			}
 		});
-		mnNewMenu.add(mntmConfig);
+		
+		jMenu.add(jMenuItem);
 		repaint();
+		
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
+
 }
