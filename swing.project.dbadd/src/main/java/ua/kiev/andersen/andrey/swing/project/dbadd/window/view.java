@@ -23,29 +23,43 @@ import java.awt.List;
 import javax.swing.JTextField;
 import javax.swing.JScrollBar;
 
+/**
+ * LOL For King
+ */
 public class view extends JFrame{
 	
 	private JPanel jPanel = new JPanel();
+	
 	private JTextField txtPort;
 	private JTextField txtDB;
 	private JTextField txtLogin;
-	private JButton eer;
-	private JComboBox comboBox;
 	private JTextField txtPass;
-	private String forFormDBConnection;
-	private final ArrayList<JComboBox> jb = new ArrayList<JComboBox>();
-	private JTextField textField;
-	private final String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
-	private String[] dbString = {"2","3","4","5"};
-	private final String[] countObject = {"10","25","50","100","250"};
-	private JComboBox countColum;
-	private JLabel lblColumget;
-	private JMenuBar jMenuBar;
+	private JTextField txtTable;
+
+	private JLabel jLable;
+	
+	private JButton jButton;
+	
+	private JComboBox jComboBox;
+	
 	private JMenu jMenu;
+	
+	private JMenuBar jMenuBar;
+	
 	private JMenuItem jMenuItem;
 	
+	private ArrayList<JComboBox> jb = new ArrayList<JComboBox>();
+	
+	private String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
+	private String[] dbString = {"2","3","4","5"};
+	private String[] countObject = {"10","25","50","100","250"};
+	private String[] sqlJDBC = {"MySql","PostgreSQL"};
+	
+	private String forFormDBConnection;
+	
+	private int ct = 2;
+	
 	public view() {	
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -56,26 +70,38 @@ public class view extends JFrame{
 			
 		menuWork();
 		panelConfig();
-		
-		
+	
 		jPanel.repaint(); 
 		setVisible(true);		
 	}
 	
-	
-	////////////////////////////////////////////////////////////////////////////////////////////
-	
+	/**
+	 * This is method for build menu panel
+	 * 
+	 * @author hitek
+	 * 
+	 * @param Null
+	 * @return Menu Panel
+	 * @see view#menuWork()
+	 */
 	void panelMenu(){
-		
 		jPanel = new JPanel();
+		
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
-		menuWork();
-		
+		menuWork();	
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////
-	
+	/**
+	 * This method for build Add panel, show fields what we shod add to database table
+	 * 
+	 * @author hitek
+	 * 
+	 * @param Null
+	 * @return Add Panel
+	 * 
+	 * @see {https://www.linkedin.com/feed/}
+	 */
 	void panelAdd(){
 		
 		jPanel = new JPanel();
@@ -83,42 +109,42 @@ public class view extends JFrame{
 		getContentPane().add(jPanel);
 		jPanel.setLayout(null);	
 		
-		lblColumget = new JLabel("ColumGet");
-		lblColumget.setBounds(10, 30, 70, 20);
-		jPanel.add(lblColumget);
+		jLable = new JLabel("ColumGet");
+		jLable.setBounds(10, 30, 70, 20);
+		jPanel.add(jLable);
 		
-		countColum = new JComboBox(dbString);
-		countColum.addActionListener(new ActionListener() {
+		jComboBox = new JComboBox(dbString);
+		jComboBox.setSelectedItem(dbString[ct - 2]);
+		jComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String columAdd = (String)countColum.getSelectedItem();
+				String columAdd = (String)jComboBox.getSelectedItem();
 				System.out.println(columAdd);
-				
-				int ct = Integer.parseInt(columAdd);
+				ct = Integer.parseInt(columAdd);
 				getContentPane().remove(jPanel);
 				panelAdd();
-				countColum.setSelectedItem(dbString[ct - 2]);
+				System.out.println("Once");
 				jPanel.repaint(); 
 				setVisible(true);
 				jb.clear();
 				for(int i = 0; i < ct+1; i++){
 					if(i < ct){
-					JLabel lblLogin = new JLabel((i + 1) + " colum");
-					lblLogin.setBounds(10, 61 + (i*30), 50, 14);
-					jPanel.add(lblLogin);
+					jLable = new JLabel((i + 1) + " colum");
+					jLable.setBounds(10, 61 + (i*30), 50, 14);
+					jPanel.add(jLable);
 					
-					comboBox = new JComboBox(forColum);
-					comboBox.setBounds(100, 61 + (i*30), 70, 20);
-					jPanel.add(comboBox);
+					jComboBox = new JComboBox(forColum);
+					jComboBox.setBounds(100, 61 + (i*30), 70, 20);
+					jPanel.add(jComboBox);
 					}else{
-						JLabel lblLogin = new JLabel("AddNew");
-						lblLogin.setBounds(10, 61 + (i*30), 50, 14);
-						jPanel.add(lblLogin);
+						jLable = new JLabel("AddNew");
+						jLable.setBounds(10, 61 + (i*30), 50, 14);
+						jPanel.add(jLable);
 						 
-						comboBox = new JComboBox(countObject);
-						comboBox.setBounds(100, 61 + (i*30), 70, 20);
-						jPanel.add(comboBox);
+						jComboBox = new JComboBox(countObject);
+						jComboBox.setBounds(100, 61 + (i*30), 70, 20);
+						jPanel.add(jComboBox);
 					}
-					jb.add(comboBox);
+					jb.add(jComboBox);
 				}
 				
 				jPanel.repaint(); 
@@ -126,34 +152,36 @@ public class view extends JFrame{
 			}
 		});
 		
-		countColum.setBounds(84, 30, 100, 20);
-		jPanel.add(countColum);
+		jComboBox.setBounds(84, 30, 100, 20);
+		jPanel.add(jComboBox);
 		
-		JButton btnokok = new JButton("Ok");
-		btnokok.addActionListener(new ActionListener() {
+		jButton = new JButton("Ok");
+		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for(int i = 0; i < jb.size(); i++){
 					System.out.println((String)jb.get(i).getSelectedItem());
 				}
 			}
 		});
-		btnokok.setBounds(111, 237, 73, 23);
-		jPanel.add(btnokok);
+		jButton.setBounds(111, 237, 73, 23);
+		jPanel.add(jButton);
 		
-		JButton btnClear = new JButton("Clear");
-		btnClear.addActionListener(new ActionListener() {
+		jButton = new JButton("Clear");
+		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
 			}
 		});
-		btnClear.setBounds(10, 237, 73, 23);
-		jPanel.add(btnClear);
+		jButton.setBounds(10, 237, 73, 23);
+		jPanel.add(jButton);
 		
 		menuWork();
 		
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * We get Configuration panel
+	 */
 	
 	void panelConfig(){
 		
@@ -161,21 +189,20 @@ public class view extends JFrame{
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
 		jPanel.setLayout(null);
-		String[] sqlJDBC = {"MySql","PostgreSQL"};
-		final JComboBox SQLSelect = new JComboBox(sqlJDBC);
-		SQLSelect.addActionListener(new ActionListener() {
+		jComboBox = new JComboBox(sqlJDBC);
+		jComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sqlJDBCOne = (String)SQLSelect.getSelectedItem();
+				String sqlJDBCOne = (String)jComboBox.getSelectedItem();
 				System.out.println(sqlJDBCOne);
 			}
 		});
 		
-		SQLSelect.setBounds(66, 30, 100, 20);
-		jPanel.add(SQLSelect);
+		jComboBox.setBounds(66, 30, 100, 20);
+		jPanel.add(jComboBox);
 		
-		JLabel lblSql = new JLabel("SQL");
-		lblSql.setBounds(20, 30, 50, 20);
-		jPanel.add(lblSql);
+		jLable = new JLabel("SQL");
+		jLable.setBounds(20, 30, 50, 20);
+		jPanel.add(jLable);
 		
 		txtPort = new JTextField();
 		txtPort.setBounds(80, 60, 86, 20);
@@ -186,48 +213,50 @@ public class view extends JFrame{
 		txtDB.setBounds(80, 91, 86, 20);
 		jPanel.add(txtDB);
 		txtDB.setColumns(10);
+				
+		txtTable = new JTextField();
+		txtTable.setColumns(10);
+		txtTable.setBounds(80, 122, 86, 20);
+		jPanel.add(txtTable);
 		
 		txtLogin = new JTextField();
 		txtLogin.setColumns(10);
 		txtLogin.setBounds(80, 153, 86, 20);
 		jPanel.add(txtLogin);
 		
-		JLabel lblLogin = new JLabel("PORT");
-		lblLogin.setBounds(20, 63, 46, 14);
-		jPanel.add(lblLogin);
-		
-		JLabel lblPasword = new JLabel("DB");
-		lblPasword.setBounds(20, 93, 46, 14);
-		jPanel.add(lblPasword);
-		
-		JLabel DBLabel = new JLabel("Login");
-		DBLabel.setBounds(20, 156, 56, 14);
-		jPanel.add(DBLabel);
-
-		JLabel lblPort = new JLabel("Pass");
-		lblPort.setBounds(20, 187, 56, 14);
-		jPanel.add(lblPort);
-		
 		txtPass = new JTextField();
 		txtPass.setColumns(10);
 		txtPass.setBounds(80, 184, 86, 20);
 		jPanel.add(txtPass);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(80, 122, 86, 20);
-		jPanel.add(textField);
+		jLable = new JLabel("PORT");
+		jLable.setBounds(20, 63, 46, 14);
+		jPanel.add(jLable);
 		
-		JLabel lblName = new JLabel("Table");
-		lblName.setBounds(20, 125, 56, 14);
-		jPanel.add(lblName);
+		jLable = new JLabel("DB");
+		jLable.setBounds(20, 93, 46, 14);
+		jPanel.add(jLable);
 		
-		JButton btnOk = new JButton("Ok");
-		btnOk.addActionListener(new ActionListener() {
+		jLable = new JLabel("Login");
+		jLable.setBounds(20, 156, 56, 14);
+		jPanel.add(jLable);
+
+		jLable = new JLabel("Pass");
+		jLable.setBounds(20, 187, 56, 14);
+		jPanel.add(jLable);
+		
+		jLable = new JLabel("Table");
+		jLable.setBounds(20, 125, 56, 14);
+		jPanel.add(jLable);
+		
+		jButton = new JButton("Ok");
+		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				forFormDBConnection = txtPort.getText();
 				System.out.println(forFormDBConnection);
 				forFormDBConnection = txtDB.getText();
+				System.out.println(forFormDBConnection);
+				forFormDBConnection = txtTable.getText();
 				System.out.println(forFormDBConnection);
 				forFormDBConnection = txtLogin.getText();
 				System.out.println(forFormDBConnection);
@@ -236,19 +265,19 @@ public class view extends JFrame{
 			}
 		});
 		
-		btnOk.setBounds(111, 237, 73, 23);
-		jPanel.add(btnOk);
+		jButton.setBounds(111, 237, 73, 23);
+		jPanel.add(jButton);
 		
-		JButton btnClear = new JButton("Clear");
-		btnClear.addActionListener(new ActionListener() {
+		jButton = new JButton("Clear");
+		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelConfig();
 				forFormDBConnection = null;
 			}
 		});
 		
-		btnClear.setBounds(10, 237, 73, 23);
-		jPanel.add(btnClear);
+		jButton.setBounds(10, 237, 73, 23);
+		jPanel.add(jButton);
 		getContentPane().add(jPanel);
 		
 		menuWork();
@@ -273,10 +302,12 @@ public class view extends JFrame{
 				panelMenu();
 				jPanel.repaint(); 
 				setVisible(true);
+				System.out.println("Main");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
+		System.gc();
 		
 		jMenuItem = new JMenuItem("AddNewFild");
 		jMenuItem.addActionListener(new ActionListener() {
@@ -285,10 +316,12 @@ public class view extends JFrame{
 				panelAdd();
 				jPanel.repaint(); 
 				setVisible(true);
+				System.out.println("AddNewFild");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
+		System.gc();
 		
 		jMenuItem = new JMenuItem("Config");
 		jMenuItem.addActionListener(new ActionListener() {
@@ -297,10 +330,13 @@ public class view extends JFrame{
 				panelConfig();
 				jPanel.repaint();
 				setVisible(true);
+				System.out.println("Config");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
+		System.gc();
+		
 		repaint();
 		
 	}
