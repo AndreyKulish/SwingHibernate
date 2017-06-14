@@ -40,7 +40,7 @@ public class view extends JFrame{
 	
 	private JButton jButton;
 	
-	private JComboBox jComboBox;
+	private JComboBox jComboBox, jComboBoxForConfig, jComboBoxForAdd, jComboBoxForFealds, jComboBoxAddNewFealds;
 	
 	private JMenu jMenu;
 	
@@ -56,10 +56,12 @@ public class view extends JFrame{
 	private String[] sqlJDBC = {"MySql","PostgreSQL"};
 	
 	private String forFormDBConnection;
+	private String sqlJDBCOne;
 	
 	private int ct = 2;
 	
 	public view() {	
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setAlwaysOnTop(true);
 		setResizable(false);
@@ -73,37 +75,25 @@ public class view extends JFrame{
 	
 		jPanel.repaint(); 
 		setVisible(true);		
+		
 	}
 	
-	/**
-	 * This is method for build menu panel
-	 * 
-	 * @author hitek
-	 * 
-	 * @param Null
-	 * @return Menu Panel
-	 * @see view#menuWork()
-	 */
 	void panelMenu(){
+
+		getContentPane().remove(jPanel);
 		jPanel = new JPanel();
 		
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
+		
+		jPanel.repaint();
+		setVisible(true);
 		menuWork();	
 	}
 	
-	/**
-	 * This method for build Add panel, show fields what we shod add to database table
-	 * 
-	 * @author hitek
-	 * 
-	 * @param Null
-	 * @return Add Panel
-	 * 
-	 * @see {https://www.linkedin.com/feed/}
-	 */
 	void panelAdd(){
-		
+
+		getContentPane().remove(jPanel);
 		jPanel = new JPanel();
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
@@ -113,11 +103,11 @@ public class view extends JFrame{
 		jLable.setBounds(10, 30, 70, 20);
 		jPanel.add(jLable);
 		
-		jComboBox = new JComboBox(dbString);
-		jComboBox.setSelectedItem(dbString[ct - 2]);
-		jComboBox.addActionListener(new ActionListener() {
+		jComboBoxForAdd = new JComboBox(dbString);
+		jComboBoxForAdd.setSelectedItem(dbString[ct - 2]);
+		jComboBoxForAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String columAdd = (String)jComboBox.getSelectedItem();
+				String columAdd = (String)jComboBoxForAdd.getSelectedItem();
 				System.out.println(columAdd);
 				ct = Integer.parseInt(columAdd);
 				getContentPane().remove(jPanel);
@@ -132,19 +122,20 @@ public class view extends JFrame{
 					jLable.setBounds(10, 61 + (i*30), 50, 14);
 					jPanel.add(jLable);
 					
-					jComboBox = new JComboBox(forColum);
-					jComboBox.setBounds(100, 61 + (i*30), 70, 20);
-					jPanel.add(jComboBox);
+					jComboBoxForFealds = new JComboBox(forColum);
+					jComboBoxForFealds.setBounds(100, 61 + (i*30), 70, 20);
+					jPanel.add(jComboBoxForFealds);
+					
 					}else{
 						jLable = new JLabel("AddNew");
 						jLable.setBounds(10, 61 + (i*30), 50, 14);
 						jPanel.add(jLable);
 						 
-						jComboBox = new JComboBox(countObject);
-						jComboBox.setBounds(100, 61 + (i*30), 70, 20);
-						jPanel.add(jComboBox);
+						jComboBoxForFealds = new JComboBox(countObject);
+						jComboBoxForFealds.setBounds(100, 61 + (i*30), 70, 20);
+						jPanel.add(jComboBoxForFealds);
 					}
-					jb.add(jComboBox);
+					jb.add(jComboBoxForFealds);
 				}
 				
 				jPanel.repaint(); 
@@ -152,8 +143,8 @@ public class view extends JFrame{
 			}
 		});
 		
-		jComboBox.setBounds(84, 30, 100, 20);
-		jPanel.add(jComboBox);
+		jComboBoxForAdd.setBounds(84, 30, 100, 20);
+		jPanel.add(jComboBoxForAdd);
 		
 		jButton = new JButton("Ok");
 		jButton.addActionListener(new ActionListener() {
@@ -174,31 +165,31 @@ public class view extends JFrame{
 		});
 		jButton.setBounds(10, 237, 73, 23);
 		jPanel.add(jButton);
-		
+
+		jPanel.repaint();
+		setVisible(true);
 		menuWork();
 		
 	}
 	
-	/**
-	 * We get Configuration panel
-	 */
-	
 	void panelConfig(){
-		
+
+		getContentPane().remove(jPanel);
 		jPanel = new JPanel();
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
 		jPanel.setLayout(null);
-		jComboBox = new JComboBox(sqlJDBC);
-		jComboBox.addActionListener(new ActionListener() {
+		
+		jComboBoxForConfig = new JComboBox(sqlJDBC);
+		jComboBoxForConfig.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sqlJDBCOne = (String)jComboBox.getSelectedItem();
+				sqlJDBCOne = (String)jComboBoxForConfig.getSelectedItem();
 				System.out.println(sqlJDBCOne);
 			}
 		});
 		
-		jComboBox.setBounds(66, 30, 100, 20);
-		jPanel.add(jComboBox);
+		jComboBoxForConfig.setBounds(66, 30, 100, 20);
+		jPanel.add(jComboBoxForConfig);
 		
 		jLable = new JLabel("SQL");
 		jLable.setBounds(20, 30, 50, 20);
@@ -279,12 +270,12 @@ public class view extends JFrame{
 		jButton.setBounds(10, 237, 73, 23);
 		jPanel.add(jButton);
 		getContentPane().add(jPanel);
-		
+
+		jPanel.repaint();
+		setVisible(true);
 		menuWork();
 		
 	}
-	
-	////////////////////////////////////////////////////////////////////////////////////////////
 
 	void menuWork(){
 		
@@ -298,49 +289,38 @@ public class view extends JFrame{
 		jMenuItem = new JMenuItem("Main");
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().remove(jPanel);
 				panelMenu();
-				jPanel.repaint(); 
 				setVisible(true);
 				System.out.println("Main");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
-		System.gc();
 		
 		jMenuItem = new JMenuItem("AddNewFild");
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().remove(jPanel);
 				panelAdd();
-				jPanel.repaint(); 
 				setVisible(true);
 				System.out.println("AddNewFild");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
-		System.gc();
 		
 		jMenuItem = new JMenuItem("Config");
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().remove(jPanel);
 				panelConfig();
-				jPanel.repaint();
 				setVisible(true);
 				System.out.println("Config");
 			}
 		});
 		
 		jMenu.add(jMenuItem);
-		System.gc();
 		
 		repaint();
 		
 	}
-	
-	////////////////////////////////////////////////////////////////////////////////////////////
 
 }
