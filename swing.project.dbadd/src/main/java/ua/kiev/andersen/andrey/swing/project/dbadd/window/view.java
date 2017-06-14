@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
+
+import ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBConfig;
+
 import javax.swing.JPopupMenu;
 import java.awt.Panel;
 import java.awt.event.ActionListener;
@@ -60,6 +63,12 @@ public class view extends JFrame{
 	
 	private int ct = 2;
 	
+	private DBConfig dbConfig = new DBConfig();
+	
+	public DBConfig getDbConfig() {
+		return dbConfig;
+	}
+
 	public view() {	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -290,7 +299,6 @@ public class view extends JFrame{
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelMenu();
-				setVisible(true);
 				System.out.println("Main");
 			}
 		});
@@ -301,7 +309,6 @@ public class view extends JFrame{
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelAdd();
-				setVisible(true);
 				System.out.println("AddNewFild");
 			}
 		});
@@ -312,7 +319,6 @@ public class view extends JFrame{
 		jMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panelConfig();
-				setVisible(true);
 				System.out.println("Config");
 			}
 		});
