@@ -56,6 +56,7 @@ public class view extends JFrame{
 	private String[] sqlJDBC = {"MySql","PostgreSQL"};
 	
 	private String forFormDBConnection;
+	private String sqlJDBCOne;
 	
 	private int ct = 2;
 	
@@ -152,6 +153,8 @@ public class view extends JFrame{
 			}
 		});
 		
+		ct = 2;
+		
 		jComboBox.setBounds(84, 30, 100, 20);
 		jPanel.add(jComboBox);
 		
@@ -189,10 +192,11 @@ public class view extends JFrame{
 		jPanel.setBounds(0, 0, 194, 271);
 		getContentPane().add(jPanel);
 		jPanel.setLayout(null);
+		
 		jComboBox = new JComboBox(sqlJDBC);
 		jComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String sqlJDBCOne = (String)jComboBox.getSelectedItem();
+				sqlJDBCOne = (String)jComboBox.getSelectedItem();
 				System.out.println(sqlJDBCOne);
 			}
 		});
