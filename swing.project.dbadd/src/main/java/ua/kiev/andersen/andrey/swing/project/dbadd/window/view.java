@@ -38,6 +38,7 @@ public class view extends JFrame{
 	private JTextField txtLogin;
 	private JTextField txtPass;
 	private JTextField txtTable;
+	private JTextField txtAddNew;
 
 	private JLabel jLable;
 	
@@ -55,7 +56,6 @@ public class view extends JFrame{
 	
 	private String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
 	private String[] dbString = {"2","3","4","5"};
-	private String[] countObject = {"10","25","50","100","250"};
 	private String[] sqlJDBC = {"MySql","PostgreSQL"};
 	
 	private String forFormDBConnection;
@@ -139,10 +139,12 @@ public class view extends JFrame{
 						jLable = new JLabel("AddNew");
 						jLable.setBounds(10, 61 + (i*30), 50, 14);
 						jPanel.add(jLable);
-						 
-						jComboBoxForFealds = new JComboBox(countObject);
-						jComboBoxForFealds.setBounds(100, 61 + (i*30), 70, 20);
-						jPanel.add(jComboBoxForFealds);
+						
+						txtAddNew = new JTextField();
+						txtAddNew.setColumns(10);
+						txtAddNew.setBounds(100, 61 + (i*30), 70, 20);
+						jPanel.add(txtAddNew);
+						
 					}
 					jb.add(jComboBoxForFealds);
 				}
@@ -161,6 +163,8 @@ public class view extends JFrame{
 				for(int i = 0; i < jb.size(); i++){
 					System.out.println((String)jb.get(i).getSelectedItem());
 				}
+				forFormDBConnection = txtAddNew.getText();
+				System.out.println(forFormDBConnection);
 			}
 		});
 		jButton.setBounds(111, 237, 73, 23);
@@ -169,7 +173,8 @@ public class view extends JFrame{
 		jButton = new JButton("Clear");
 		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				panelAdd();
+					jb.clear();
 			}
 		});
 		jButton.setBounds(10, 237, 73, 23);
