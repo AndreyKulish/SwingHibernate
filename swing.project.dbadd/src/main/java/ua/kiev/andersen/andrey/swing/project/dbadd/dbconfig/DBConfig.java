@@ -2,50 +2,48 @@ package ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig;
 
 public class DBConfig {
 	
-	private String SQL;
-	private String PORT;
-	private String DB;
-	private String TABLE;
-	private String LOGIN;
-	private String PASS;
+	private static String SQL;
+	private static String PORT;
+	private static String DB;
+	private static String TABLE;
+	private static String LOGIN;
+	private static String PASS;
 	
-	public String getSQL() {
+	public static String getSQL() {
 		return SQL;
 	}
-	public void setSQL(String sQL) {
+	public static void setSQL(String sQL) {
 		SQL = sQL;
 	}
-	public String getPORT() {
+	public static String getPORT() {
 		return PORT;
 	}
-	public void setPORT(String pORT) {
+	public static void setPORT(String pORT) {
 		PORT = pORT;
 	}
-	public String getDB() {
+	public static String getDB() {
 		return DB;
 	}
-	public void setDB(String dB) {
+	public static void setDB(String dB) {
 		DB = dB;
 	}
-	public String getTABLE() {
+	public static String getTABLE() {
 		return TABLE;
 	}
-	public void setTABLE(String tABLE) {
+	public static void setTABLE(String tABLE) {
 		TABLE = tABLE;
 	}
-	public String getLOGIN() {
+	public static String getLOGIN() {
 		return LOGIN;
 	}
-	public void setLOGIN(String lOGIN) {
+	public static void setLOGIN(String lOGIN) {
 		LOGIN = lOGIN;
 	}
-	public String getPASS() {
+	public static String getPASS() {
 		return PASS;
 	}
-	public void setPASS(String pASS) {
+	public static void setPASS(String pASS) {
 		PASS = pASS;
 	}
-	
-	
 	
 }

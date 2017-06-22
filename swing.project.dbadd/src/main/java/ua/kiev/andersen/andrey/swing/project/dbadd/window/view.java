@@ -12,6 +12,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 import ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBConfig;
+import ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.SQLConection;
 
 import javax.swing.JPopupMenu;
 import java.awt.Panel;
@@ -56,18 +57,14 @@ public class view extends JFrame{
 	
 	private String[] forColum = {"NULL","INT","NAME","LNAME","AGE","DATE","NUMB"};
 	private String[] dbString = {"2","3","4","5"};
-	private String[] sqlJDBC = {"MySql","PostgreSQL"};
+	private String[] sqlJDBC = {"MySql"};
 	
 	private String forFormDBConnection;
 	private String sqlJDBCOne;
 	
 	private int ct = 2;
 	
-	private DBConfig dbConfig = new DBConfig();
-	
-	public DBConfig getDbConfig() {
-		return dbConfig;
-	}
+	private DBConfig dbConfig;
 
 	public view() {	
 		
@@ -257,16 +254,17 @@ public class view extends JFrame{
 		jButton = new JButton("Ok");
 		jButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				forFormDBConnection = txtPort.getText();
-				System.out.println(forFormDBConnection);
-				forFormDBConnection = txtDB.getText();
-				System.out.println(forFormDBConnection);
-				forFormDBConnection = txtTable.getText();
-				System.out.println(forFormDBConnection);
-				forFormDBConnection = txtLogin.getText();
-				System.out.println(forFormDBConnection);
-				forFormDBConnection = txtPass.getText();
-				System.out.println(forFormDBConnection);
+				
+				dbConfig.setDB(txtDB.getText());
+				dbConfig.setLOGIN(txtLogin.getText());
+				dbConfig.setPASS(txtPass.getText());
+				dbConfig.setPORT(txtPort.getText());
+				dbConfig.setTABLE(txtTable.getText());
+				
+				/*if(txtDB.getText() == null)*/
+				
+				SQLConection.setConnection(dbConfig.getPORT(), dbConfig.getDB(), dbConfig.getLOGIN(), dbConfig.getPASS());
+				
 			}
 		});
 		

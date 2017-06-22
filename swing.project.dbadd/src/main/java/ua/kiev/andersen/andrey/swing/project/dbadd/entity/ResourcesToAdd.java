@@ -2,16 +2,9 @@ package ua.kiev.andersen.andrey.swing.project.dbadd.entity;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 
-
-@Entity
-@Table(name="HITEK")
 public class ResourcesToAdd {
-	@Id
 	private int ID;
 	private String NAME;
 	private String LNAME;

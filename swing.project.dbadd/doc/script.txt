@@ -1,0 +1,16 @@
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = ID 
+
+
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = NAME 
+
+
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = LNAME 
+
+
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = AGE 
+
+
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = DATES 
+
+
+------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = NUMB 
