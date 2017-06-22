@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
 import ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBConfig;
@@ -69,7 +70,7 @@ public class view extends JFrame{
 	public view() {	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setAlwaysOnTop(true);
+		setAlwaysOnTop(false);
 		setResizable(false);
 		setSize(200, 300);
 		
@@ -260,11 +261,12 @@ public class view extends JFrame{
 				dbConfig.setPASS(txtPass.getText());
 				dbConfig.setPORT(txtPort.getText());
 				dbConfig.setTABLE(txtTable.getText());
-				
-				/*if(txtDB.getText() == null)*/
-				
+				System.out.println(txtDB.getText());
+				if(txtDB.getText().equals("") || txtLogin.getText().equals("") || txtPass.getText().equals("") || txtPort.getText().equals("") || txtTable.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Some fields are null");
+				}else{
 				SQLConection.setConnection(dbConfig.getPORT(), dbConfig.getDB(), dbConfig.getLOGIN(), dbConfig.getPASS());
-				
+				}
 			}
 		});
 		

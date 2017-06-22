@@ -1,16 +1,70 @@
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = ID 
-
-
+///////////////// class/////////////////=///////////////////method//////////////=/////////////////////discript////////////////
+			ResourcesToAdd				=				getID()					=	получение ID обьекта 
+			ResourcesToAdd				=				setID()					=	заполнение ID бьекта
+										=										=										
+										=										=
+										=										=										
+										=										=
+										
+										
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = NAME 
-
-
+///////////////// class/////////////////=///////////////////method//////////////=/////////////////////discript////////////////
+			ResourcesToAdd				=				getNAME()				=	получение имени обьекта
+			ResourcesToAdd				=				setNAME()				=	заполнение имени обьекта
+										=										=										
+										=										=
+										=										=										
+										=										=
+										=										=										
+										=										=
+										
+										
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = LNAME 
-
-
+///////////////// class/////////////////=///////////////////method//////////////=/////////////////////discript////////////////
+			ResourcesToAdd				=				getLNAME()				=	получение фамилии обьекта
+			ResourcesToAdd				=				setLNAME()				=	зполнение фамилии обьекта 
+										=										=										
+										=										=
+										=										=										
+										=										=
+										=										=										
+										=										=
+										
+										
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = AGE 
-
-
+///////////////// class/////////////////=///////////////////method//////////////=/////////////////////discript////////////////
+			ResourcesToAdd				=				getAGE()				=	получение возраста обьекта
+			ResourcesToAdd				=				setAGE()				=	заполнение возраста обьекта
+										=										=										
+										=										=
+										=										=										
+										=										=
+										=										=										
+										=										=
+										
+										
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = DATES 
-
-
+///////////////// class/////////////////=///////////////////method//////////////=/////////////////////discript////////////////
+			ResourcesToAdd				=				setDATES()				=	заполение даты обьекта 
+			ResourcesToAdd				=				getDATES				=	получение даты обьекта
+										=										=										
+										=										=
+										=										=										
+										=										=
+										=										=										
+										=										=
+										
+										
 ------------------------------ ua.kiev.andersen.andrey.swing.project.dbadd.entity = ResourcesToAdd = NUMB 
+			ResourcesToAdd				=				getNUMB()				=	получение номера обьекта
+			ResourcesToAdd				=				setNUMB()				=	заполнение номера обьекта
+										=										=									
+										=										=
+										=										=										
+										=										=																				
+										=										=
+										=										=										
+										=										=
+										=										=										
+										=										=

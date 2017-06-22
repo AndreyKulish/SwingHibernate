@@ -11,7 +11,11 @@ public class App
 
     public static void main( String[] args ) throws SQLException
     {
-        new view();
+    	SQLConection.setConnection("localhost", "hitekdada", "root", "root");
+    	new DBServise().getName(111, "hitek");
+    	new DBServise().getAge(111, "hitek");
+    	new DBServise().getLName(111, "hitek");
+        //new view();
     }
   
 }

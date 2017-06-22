@@ -1,0 +1,14 @@
+2017-06-22 17:28:04,499  INFO MyLogger: 32 - QEVW VQ
+2017-06-22 17:28:19,571  INFO MyLogger: 32 - Andrey
+2017-06-22 17:30:50,269  INFO MyLogger: 32 - Andrey
+2017-06-22 17:31:06,223 ERROR MyLogger: 95 - ua.kiev.andersen.andrey.swing.project.dbadd.Exception.ResultSetAppException: Ошибка: пустой ResultSet!
+2017-06-22 17:39:13,508 ERROR MyLogger: 32 - Select by NAME
+ua.kiev.andersen.andrey.swing.project.dbadd.Exception.ResultSetAppException: Ошибка: пустой ResultSet!
+	at ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBServise.isResultOk(DBServise.java:116)
+	at ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBServise.getName(DBServise.java:30)
+	at ua.kiev.andersen.andrey.swing.project.dbadd.App.main(App.java:15)
+2017-06-22 17:40:28,822 ERROR MyLogger: 32 - Select by NAME
+ua.kiev.andersen.andrey.swing.project.dbadd.Exception.ResultSetAppException: Ошибка: пустой ResultSet!
+	at ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBServise.isResultOk(DBServise.java:116)
+	at ua.kiev.andersen.andrey.swing.project.dbadd.dbconfig.DBServise.getName(DBServise.java:30)
+	at ua.kiev.andersen.andrey.swing.project.dbadd.App.main(App.java:15)
